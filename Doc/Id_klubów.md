@@ -21,3 +21,13 @@
 - Tottenham -> 361ca564
 - West Ham -> 7c21e445
 - Wolves -> 8cec06e1
+- Leicester -> a2d435b3
+- Leeds -> 5bfb9659
+- Southampton -> 33c895d4
+- Watford -> 2abfe087
+- Norwich -> 1c781004
+- West Brom -> 60c6b05f
+- Stoke -> 17892952
+- Swansea -> fb10988f
+- Cardiff -> 75fae011
+- Huddersfield -> f5922ca5
