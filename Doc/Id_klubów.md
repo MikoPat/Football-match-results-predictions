@@ -1,0 +1,33 @@
+
+### Tabela z id klubów na stronie FbRef
+
+- Arsenal -> 18bb7c10
+- Aston Villa -> 8602292d
+- Bournemouth -> 4ba7cbea
+- Brentford -> cd051869
+- Brighton -> d07537b9
+- Burnley -> 943e8050
+- Chelsea -> cff3d9bb
+- Crystal Palace -> 47c64c55
+- Everton -> d3fd31cc
+- Fulham -> fd962109
+- Liverpool -> 822bd0ba
+- Luton Town -> e297cd13
+- Manchester City -> b8fd03ef
+- Manchester Utd -> 19538871
+- Newcastle Utd -> b2b47a98
+- Nott'ham Forest -> e4a775cb
+- Sheffield Utd -> 1df6b87e
+- Tottenham -> 361ca564
+- West Ham -> 7c21e445
+- Wolves -> 8cec06e1
+- Leicester -> a2d435b3
+- Leeds -> 5bfb9659
+- Southampton -> 33c895d4
+- Watford -> 2abfe087
+- Norwich -> 1c781004
+- West Brom -> 60c6b05f
+- Stoke -> 17892952
+- Swansea -> fb10988f
+- Cardiff -> 75fae011
+- Huddersfield -> f5922ca5
