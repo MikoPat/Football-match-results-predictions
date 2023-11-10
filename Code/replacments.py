@@ -1,4 +1,3 @@
-
 def get_replacement(club_name):
 
     replacments_club_names = {
@@ -7,6 +6,7 @@ def get_replacement(club_name):
         'Bournemouth' : 'Bournemouth',
         'Brentford' : 'Brentford',
         'Brighton' : 'Brighton',
+        'Brighton &amp; Hove Albion' : 'Brighton',
         'Burnley' : 'Burnley',
         'Chelsea' : 'Chelsea',
         'Crystal Palace' : 'Crystal Palace',
@@ -16,22 +16,37 @@ def get_replacement(club_name):
         'Luton Town' : 'Luton',
         'Manchester City' : 'Man City',
         'Manchester Utd' : 'Man United',
+        'Manchester United' : 'Man United',
         'Newcastle Utd' : 'Newcastle',
+        'Newcastle United' : 'Newcastle',
         "Nott'ham Forest" : 'Forest',
+        'Nottingham Forest' : 'Forest',
         'Sheffield Utd ' : 'Sheffield United',
+        'Sheffield United' : 'Sheffield United',
         'Tottenham' : 'Tottenham',
+        'Tottenham Hotspur' : 'Tottenham',
         'West Ham' : 'West Ham',
+        'West Ham United' : 'West Ham',
         'Wolves' : 'Wolves',
+        'Wolverhampton Wanderers' : 'Wolves',
         'Leicester' : 'Leicester',
+        'Leicester City' : 'Leicester',
         'Leeds' : 'Leeds',
+        'Leeds United' : 'Leeds',
         'Southampton' : 'Southampton',
         'Watford' : 'Watford',
         'Norwich' : 'Norwich',
+        'Norwich City' : 'Norwich',
         'West Brom' : 'West Brom',
+        'West Bromwich Albion' : 'West Brom',
         'Stoke' : 'Stoke',
+        'Stoke City' : 'Stoke',
         'Swansea' : 'Swansea',
+        'Swansea City' : 'Swansea', 
         'Cardiff' : 'Cardiff',
-        'Huddersfield' : 'Huddersfield'
+        'Cardiff City' : 'Cardiff',
+        'Huddersfield' : 'Huddersfield',
+        'Huddersfield Town' : 'Huddersfield'
     }
 
     return replacments_club_names.get(club_name, club_name)
