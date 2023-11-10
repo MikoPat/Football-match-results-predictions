@@ -40,11 +40,10 @@ def dataFrame(dataRows):
     return df
 
 def get_row(match_date, df):
-    #date_to_check = pd.to_datetime('2023-08-11')
-    date_to_check = pd.to_datetime(match_date)
-    filtered_row = df[(pd.to_datetime(df['from']) <= date_to_check) & (pd.to_datetime(df['to']) >= date_to_check)]
 
-    elo_value = float(filtered_row['elo'])
+    filtered_df = df[(df['from'] <= match_date) & (df['to'] >= match_date)]
+
+    elo_value = float(filtered_df['elo'])
     
     return elo_value
 
