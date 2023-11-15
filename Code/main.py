@@ -35,6 +35,3 @@ def main():
 if __name__ == '__main__':
     main()
 
-
-#TODO: uzupełnic mecz https://fbref.com/en/matches/e7e969e9/Brentford-Manchester-City-May-28-2023-Premier-League
-# 
