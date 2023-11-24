@@ -9,8 +9,6 @@ def getDataToLearning():
 
     number_of_games_5 = 5
     number_of_games_3 = 3
-    final_data = pd.DataFrame()
-
 
     df = getDataFromMongo()
     df = getColumns(df)
@@ -19,62 +17,68 @@ def getDataToLearning():
     df['home_team'] = df['home_team'].apply(get_replacement)
     df['away_team'] = df['away_team'].apply(get_replacement)
 
-
-
-    # tu zaczynamy tworzyć data freme do uczenia
+    final_data = pd.DataFrame()
 
     for index, row in df.iterrows():
+
+        game_data = row['game_date']
+
+        home_team_name = row['home_team']
+        home_elo_value = row['home_team_elo']
+
+        away_team_name = row['away_team']
+        away_elo_value = row['away_team_elo']
+        
+
+        #home
+        home_team_games_n = getLastNGames(df, home_team_name, game_data, number_of_games_5)
+        home_team_games_n_data = getSearchOpponentData(home_team_games_n, home_team_name)
+        home_team_games_n_data.columns = ['home_team_last_5_' + str(col) for col in home_team_games_n_data.columns]
+
+        home_team_games_3 = getLastThreeGamesSame(df, home_team_name, game_data, number_of_games_3, home_elo_value)
+        home_team_games_3_data = getSearchOpponentData(home_team_games_3, home_team_name)
+        home_team_games_3_data.columns = ['home_team_last_3_' + str(col) for col in home_team_games_3_data.columns]
+
+        home_result = pd.concat([home_team_games_n_data, home_team_games_3_data], axis=1)
+
+        #away
+        away_team_games_n = getLastNGames(df, away_team_name, game_data, number_of_games_5)
+        away_team_games_n_data = getSearchOpponentData(away_team_games_n, away_team_name)
+        away_team_games_n_data.columns = ['away_team_last_5_' + str(col) for col in away_team_games_n_data.columns]
+        
+        away_team_games_3 = getLastThreeGamesSame(df, away_team_name, game_data, number_of_games_3, away_elo_value)
+        away_team_games_3_data = getSearchOpponentData(away_team_games_3, away_team_name)
+        away_team_games_3_data.columns = ['away_team_last_3_' + str(col) for col in away_team_games_3_data.columns]
+
+
+        result = pd.DataFrame()
+
         #określnie wyniku meczu
         if row['home_team_summary_goals'] > row['away_team_summary_goals']:
-            df.at[index, 'result'] = 2
+            result.at[index, 'result'] = 3
         elif row['home_team_summary_goals'] == row['away_team_summary_goals']:
-            df.at[index, 'result'] = 1
+            result.at[index, 'result'] = 1
         elif row['home_team_summary_goals'] < row['away_team_summary_goals']:
-            df.at[index, 'result'] = 0
+            result.at[index, 'result'] = 0
         else:
-            df.at[index, 'result'] = 0
+            result.at[index, 'result'] = 0
+
+        fianl_data_rows = pd.concat([home_team_games_n_data.reset_index(drop=True), 
+                                home_team_games_3_data.reset_index(drop=True), 
+                                away_team_games_n_data.reset_index(drop=True), 
+                                away_team_games_3_data.reset_index(drop=True), 
+                                result.reset_index(drop=True)], axis=1)
+
+        final_data = final_data.append(fianl_data_rows, ignore_index=True)
+
+        #display(fianl_data)
 
 
+    #czyszczenie 
+    final_data = final_data.dropna()
 
-    for index, row in df.iterrows():
+    final_data.to_csv('../Data/fianl_data_for_neural_network.csv', sep='\t', encoding='utf-8')
 
-        home_team = df['home_team']
-        home_team_elo = df['home_team_elo']
-        away_team = df['away_team']
-        away_team_elo = df['away_team_elo']
-
-        game_date = df['game_date']
-
-        #home team
-        home_last_five = getLastNGames(df, home_team, game_date, number_of_games_5)
-        home_data_last_five = getSearchOpponentData(home_last_five, home_team)
-        home_data_last_five.columns = ['last_5_' + str(col) for col in home_data_last_five.columns]
-
-        home_last_three = getLastThreeGamesSame(df, home_team, game_date, number_of_games_3, home_team_elo)
-        home_data_last_three = getSearchOpponentData(home_last_three, home_team)
-        home_data_last_three.columns = ['last_3_' + str(col) for col in home_data_last_three.columns]
-
-        home_result = pd.concat([home_data_last_five, home_data_last_three], axis=1).reindex(home_data_last_five.index)
-
-        #away team
-        away_last_five = getLastNGames(df, away_team, game_date, number_of_games_5)
-        away_data_last_five = getSearchOpponentData(away_last_five, away_team)
-        away_data_last_five.columns = ['last_5_' + str(col) for col in away_data_last_five.columns]
-
-        away_last_three = getLastThreeGamesSame(df, away_team, game_date, number_of_games_3, away_team_elo)
-        away_data_last_three = getSearchOpponentData(away_last_three, away_team)
-        away_data_last_three.columns = ['last_3_' + str(col) for col in away_data_last_three.columns]
-
-        away_result = pd.concat([away_data_last_five, away_data_last_three], axis=1).reindex(away_data_last_five.index)
-
-        result = pd.concat([home_result, away_result], axis=1).reindex(home_result.index)
-
-        result['home_team_elo'] = df['home_team_elo']
-
-        result['away_team_elo'] = df['away_team_elo']
-
-        final_data = final_data.append(result)
-
-    return final_data
-
+    return "Yeee"
+    
 print(getDataToLearning())
