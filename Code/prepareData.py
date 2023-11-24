@@ -6,8 +6,8 @@ def cleaningData(df):
     df.columns = df.columns.str.replace("elo_home_team", "home_team_elo")
     df.columns = df.columns.str.replace("elo_away_team", "away_team_elo")
 
-    df = df.drop_duplicates(subset=df.columns.difference(['_id','home_team_elo', 'away_team_elo']), keep='first')
-    columns_to_exclude = ["game_date", "game_time", "home_team", "away_team"]
+    df = df.drop_duplicates(subset=df.columns.difference(["_id"'home_team_elo', 'away_team_elo']), keep='first')
+    columns_to_exclude = ["_id","game_date", "game_time", "home_team", "away_team"]
     df = df.apply(lambda col: pd.to_numeric(col, errors='coerce') if col.name not in columns_to_exclude else col)
 
     df = df[(df['home_team_elo'] > 0) & (df['away_team_elo'] > 0)]
@@ -17,7 +17,8 @@ def cleaningData(df):
 
 def getColumns(df):
 
-    df = df[["home_team_summary_goals",
+    df = df[["_id",
+    "home_team_summary_goals",
     "home_team_summary_shots",
     "home_team_summary_shots_on_target",
     "home_team_summary_xg",
@@ -63,6 +64,7 @@ def getColumns(df):
     "elo_away_team"]]
 
     return df
+
 
 
 def getLastNGames(df, club_name, game_data, number_of_games):
@@ -140,10 +142,6 @@ def getSearchOpponentData(last_games, club_name):
             team_df.at[index, 'result'] = 0
         else:
             team_df.at[index, 'result'] = 0
-
-
-    #team_df = team_df.drop(columns=['game_date', 'game_time', 'opponent_team', 'search_team', 'search_team_elo'], axis=1)
-    team_df = team_df.drop(['game_date', 'game_time', 'opponent_team', 'search_team', 'search_team_elo'], axis=1, inplace=True)
 
     av_team_df = team_df.mean(axis=0)
     df_avg_data = av_team_df.to_frame().T

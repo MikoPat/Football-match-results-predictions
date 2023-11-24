@@ -21,9 +21,8 @@ def uploadMongo(data_to_mongo):
 def getDataFromMongo():
 
     mongo_url = "mongodb+srv://mikolajstudies:ojy24IHDLkok6oWK@football.cvyivdz.mongodb.net/"
-    #testowe dane
     database_name = "football"
-    collection_name = "predictions_test"
+    collection_name = "predictions"
 
     client = pymongo.MongoClient(mongo_url)
     database = client[database_name]
