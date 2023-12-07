@@ -30,8 +30,8 @@ def getMatchDate(page_source):
 
 
 def getMatchTime(page_source):
-    game_time = re.findall(r'data-label="your time">([^<]+)', page_source)
-    game_time = game_time[0].replace(" (local time)", "")
+    game_time = re.findall(r'data-venue-time=([^ ]+)', page_source)
+    game_time = game_time[0].replace('"', '')
 
     return game_time
 
@@ -120,7 +120,7 @@ def eloData(df):
     home_team = df['home_team'][0]
     away_team = df['away_team'][0]
 
-    home_team_name_for_elo = get_replacement(home_team).lower().strip()
+    home_team_name_for_elo = get_replacement(home_team).lower().replace(" ", "")
     away_team_name_for_elo = get_replacement(away_team).lower().replace(" ", "")
 
     df['elo_home_team'] = getElo(get_replacement(home_team_name_for_elo), str(df['game_date'][0]))
