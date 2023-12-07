@@ -52,7 +52,6 @@ def get_row(match_date, df):
 def getElo(club_name, match_date):
 
     try:
-
         replacement_club_name = get_replacement(club_name).lower()
 
         url_elo = "http://api.clubelo.com/"

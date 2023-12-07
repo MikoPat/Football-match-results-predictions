@@ -30,8 +30,8 @@ def getMatchDate(page_source):
 
 
 def getMatchTime(page_source):
-    game_time = re.findall(r'data-label="your time">([^<]+)', page_source)
-    game_time = game_time[0].replace(" (local time)", "")
+    game_time = re.findall(r'data-venue-time=([^ ]+)', page_source)
+    game_time = game_time[0].replace('"', '')
 
     return game_time
 
