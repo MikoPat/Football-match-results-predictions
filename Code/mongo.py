@@ -10,7 +10,7 @@ def uploadMongo(data_to_mongo):
     client = pymongo.MongoClient(client_link)
 
     db = client.football
-    collection = db.predictions
+    collection = db.predictions_germany
 
     result = collection.insert_one(data_to_mongo)
 
