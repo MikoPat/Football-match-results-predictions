@@ -103,7 +103,7 @@ def getDataFromPage(url):
     op = webdriver.ChromeOptions()
     op.add_argument('headless')
 
-    driver = webdriver.Chrome(executable_path='/Users/mikolajpaterka/local/bin/chromedriver', options=op)
+    driver = webdriver.Chrome(options=op)
     driver.get(url)
 
     page_source = driver.page_source
