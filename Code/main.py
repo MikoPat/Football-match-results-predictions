@@ -1,11 +1,11 @@
 
 from singleMatch import singleMatchData
-from mongo import uploadMongo
+from mongo_2 import uploadMongo
 from matchesLinks import matchesLinks
 from prepareData import *
 from replacments import *
 
-from mongo import getDataFromMongo
+from mongo_2 import getDataFromMongo
 
 
 
