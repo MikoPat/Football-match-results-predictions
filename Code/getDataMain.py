@@ -3,7 +3,7 @@ import pandas as pd
 from prepareData import *
 from replacments import *
 
-from mongo import getDataFromMongo
+from mongo_2 import getDataFromMongo
 
 def getDataToLearning():
 
@@ -63,6 +63,13 @@ def getDataToLearning():
         else:
             result.at[index, 'result'] = 0
 
+        result.at[index, 'game_date'] = game_data
+        result.at[index, 'home_team'] = home_team_name
+        result.at[index, 'home_team_elo'] = home_elo_value
+
+        result.at[index, 'away_team'] = away_team_name
+        result.at[index, 'away_team_elo'] = away_elo_value
+
         fianl_data_rows = pd.concat([home_team_games_n_data.reset_index(drop=True), 
                                 home_team_games_3_data.reset_index(drop=True), 
                                 away_team_games_n_data.reset_index(drop=True), 
@@ -74,10 +81,11 @@ def getDataToLearning():
         #display(fianl_data)
 
 
+
     #czyszczenie 
     final_data = final_data.dropna()
 
-    final_data.to_csv('../Data/fianl_data_for_neural_network.csv', sep='\t', encoding='utf-8')
+    final_data.to_csv('../Data/fianl_data_for_neural_network_italy.csv', sep='\t', encoding='utf-8')
 
     return "Yeee"
     
