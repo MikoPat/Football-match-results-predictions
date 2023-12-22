@@ -40,6 +40,8 @@ I chose Elo Ranking because of the historical data and because the value is not 
     - all columns - 0.55 accuracy
 3. Data without pandemic season - unchecked
 
+The neural network code is in the *neuralNetwork.ipynb* file in the *Code* folder.
+
 
 ### Conclusion
 
