@@ -1,0 +1,1 @@
+wydedukować liczbę bramek w meczu
